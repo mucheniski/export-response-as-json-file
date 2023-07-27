@@ -20,6 +20,7 @@ public class ExportIntermediaryService {
     }
 
     public void exporResposeToFile() {
+        log.info("Iniciando esport de dados para arquivo");
         String url = "https://api.sulamericaseguros.com.br/open-insurance/channels/v1/intermediary/SP";
         String response =  restTemplate.getForObject(url, String.class);
 
@@ -31,7 +32,7 @@ public class ExportIntermediaryService {
 
             // Salvar o response como JSON no arquivo
             objectMapper.writeValue(new File(filePath), parsedResponse);
-            System.out.println("Response salvo em " + filePath);
+            log.info("Response salvo em " + filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
